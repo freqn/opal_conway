@@ -13283,7 +13283,7 @@ if (a == null) a = nil;
 
       self.height = $(window).height();
       self.width = $(window).width();
-      self.canvas = document.getElementByID(self.$canvas_id());
+      self.canvas = document.getElementById(self.$canvas_id());
       self.context = self.$canvas().getContext('2d');
       self.max_x = (self.$height()['$/']((($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a))).$floor();
       return self.max_y = (self.$width()['$/']((($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a))).$floor();
@@ -13292,7 +13292,7 @@ if (a == null) a = nil;
     def.$draw_canvas = function() {
       var $a, $b, self = this, x = nil, y = nil;
 
-      self.$canvas().width = self.$width();
+      self.$canvas().width  = self.$width();
       self.$canvas().height = self.$height();
       x = 0.5;
       while (!(x['$>='](self.$width()))) {
