@@ -13263,7 +13263,7 @@ if (a == null) a = nil;
 (function($opal) {
   var $a, self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, grid = nil;
 
-  $opal.add_stubs(['$attr_reader', '$canvas_id', '$canvas', '$floor', '$/', '$height', '$width', '$>=', '$context', '$+', '$new', '$draw_canvas', '$*', '$-']);
+  $opal.add_stubs(['$attr_reader', '$canvas_id', '$canvas', '$floor', '$/', '$height', '$width', '$>=', '$context', '$+', '$new', '$draw_canvas', '$*', '$-', '$page_x', '$page_y', '$even', '$[]', '$Document', '$scrollLeft', '$Element', '$document', '$scrollTop', '$body']);
   ;
   ;
   (function($base, $super) {
@@ -13324,12 +13324,24 @@ if (a == null) a = nil;
     self.$context().fillStyle = "#000";
     return self.$context().fillRect(x.$floor()['$+'](1), y.$floor()['$+'](1), (($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a)['$-'](1), (($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a)['$-'](1));
   };
-  return ($opal.Object._proto.$unfill_cell = function(x, y) {
+  $opal.Object._proto.$unfill_cell = function(x, y) {
     var $a, self = this;
 
     x = x['$*']((($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a));
     y = y['$*']((($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a));
     return self.$context().clearRect(x.$floor()['$+'](1), y.$floor()['$+'](1), (($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a)['$-'](1), (($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a)['$-'](1));
+  };
+  return ($opal.Object._proto.$get_cursor_position = function(event) {
+    var $a, $b, self = this, x = nil, y = nil, doc = nil;
+
+    if ((($a = (($b = event.$page_x(), $b !== false && $b !== nil ?event.$page_y() : $b))) !== nil && (!$a._isBoolean || $a == true))) {
+      x = event.$page_x();
+      return y = self.$even().$page_y();
+      } else {
+      doc = (($a = $scope.Opal) == null ? $opal.cm('Opal') : $a).$Document()['$[]'](0);
+      x = event['$[]']("clientX")['$+'](doc.$scrollLeft())['$+'](doc.$document().$Element().$scrollLeft());
+      return y = event['$[]']("clientY")['$+'](doc.$body().$scrollTop())['$+'](doc.$document().$Element().$scrollTop());
+    };
   }, nil);
 })(Opal);
 

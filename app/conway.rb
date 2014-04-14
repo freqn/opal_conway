@@ -60,4 +60,16 @@ def unfill_cell(x,y)
   `#{context}.clearRect(#{x.floor+1}, #{y.floor+1}, #{CELL_WIDTH-1}, #{CELL_HEIGHT-1})`
 end
 
+def get_cursor_position(event)
+  if(event.page_x && event.page_y)
+    x = event.page_x;
+    y = even.page_y;
+  else
+    doc = Opal.Document[0]
+    x = event[:clientX] + doc.scrollLeft +
+      doc.document.Element.scrollLeft;
+    y = event[:clientY] + doc.body.scrollTop +
+      doc.document.Element.scrollTop;
+    end
+  end
 
