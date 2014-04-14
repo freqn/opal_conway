@@ -46,3 +46,18 @@ end
  
 grid = Grid.new
 grid.draw_canvas
+
+def fill_cell(x,y)
+  x *= CELL_WIDTH;
+  y *= CELL_HEIGHT;
+  `#{context}.fillStyle = "#000"`
+  `#{context}.fillRect(#{x.floor+1}, #{y.floor+1}, #{CELL_WIDTH-1}, #{CELL_HEIGHT-1})`
+end
+
+def unfill_cell(x,y)
+  x *= CELL_WIDTH;
+  y *= CELL_HEIGHT;
+  `#{context}.clearRect(#{x.floor+1}, #{y.floor+1}, #{CELL_WIDTH-1}, #{CELL_HEIGHT-1})`
+end
+
+

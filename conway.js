@@ -13263,7 +13263,7 @@ if (a == null) a = nil;
 (function($opal) {
   var $a, self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, grid = nil;
 
-  $opal.add_stubs(['$attr_reader', '$canvas_id', '$canvas', '$floor', '$/', '$height', '$width', '$>=', '$context', '$+', '$new', '$draw_canvas']);
+  $opal.add_stubs(['$attr_reader', '$canvas_id', '$canvas', '$floor', '$/', '$height', '$width', '$>=', '$context', '$+', '$new', '$draw_canvas', '$*', '$-']);
   ;
   ;
   (function($base, $super) {
@@ -13315,7 +13315,22 @@ if (a == null) a = nil;
     }, nil);
   })(self, null);
   grid = (($a = $scope.Grid) == null ? $opal.cm('Grid') : $a).$new();
-  return grid.$draw_canvas();
+  grid.$draw_canvas();
+  $opal.Object._proto.$fill_cell = function(x, y) {
+    var $a, self = this;
+
+    x = x['$*']((($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a));
+    y = y['$*']((($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a));
+    self.$context().fillStyle = "#000";
+    return self.$context().fillRect(x.$floor()['$+'](1), y.$floor()['$+'](1), (($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a)['$-'](1), (($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a)['$-'](1));
+  };
+  return ($opal.Object._proto.$unfill_cell = function(x, y) {
+    var $a, self = this;
+
+    x = x['$*']((($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a));
+    y = y['$*']((($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a));
+    return self.$context().clearRect(x.$floor()['$+'](1), y.$floor()['$+'](1), (($a = $scope.CELL_WIDTH) == null ? $opal.cm('CELL_WIDTH') : $a)['$-'](1), (($a = $scope.CELL_HEIGHT) == null ? $opal.cm('CELL_HEIGHT') : $a)['$-'](1));
+  }, nil);
 })(Opal);
 
 //# sourceMappingURL=/__opal_source_maps__/conway.js.map
