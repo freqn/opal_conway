@@ -1,3 +1,5 @@
+# Grid generator
+
 require 'opal'
 require 'opal-jquery'
  
@@ -47,6 +49,8 @@ end
 grid = Grid.new
 grid.draw_canvas
 
+# Fill / Unfill cells
+
 def fill_cell(x,y)
   x *= CELL_WIDTH;
   y *= CELL_HEIGHT;
@@ -59,6 +63,8 @@ def unfill_cell(x,y)
   y *= CELL_HEIGHT;
   `#{context}.clearRect(#{x.floor+1}, #{y.floor+1}, #{CELL_WIDTH-1}, #{CELL_HEIGHT-1})`
 end
+
+# Identify cursor position
 
 def get_cursor_position(event)
   if(event.page_x && event.page_y)
